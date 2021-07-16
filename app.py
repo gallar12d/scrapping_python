@@ -29,15 +29,15 @@ class HelloWorld(Resource):
         # user_input = int(
         #     input('How many followers do you want to scrape (60-500 recommended): '))
 
-        options = webdriver.ChromeOptions()
+        chrome_options = webdriver.ChromeOptions()        
+        chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        chrome_options.add_argument("--headless")
         
-        options = webdriver.ChromeOptions()
-        options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-        # options.add_argument("--headless")
-        options.add_argument('--no-sandbox')
-        options.add_argument("--log-level=3")
+        # options.add_argument("--log-level=3")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument('--no-sandbox')
 
-        bot = webdriver.Chrome(executable_path=CM().install(), options=options)
+        bot = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
         bot.get('https://www.instagram.com/accounts/login/')
 
