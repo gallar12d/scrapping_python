@@ -30,6 +30,9 @@ class HelloWorld(Resource):
         #     input('How many followers do you want to scrape (60-500 recommended): '))
 
         options = webdriver.ChromeOptions()
+        
+        options = webdriver.ChromeOptions()
+        options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         # options.add_argument("--headless")
         options.add_argument('--no-sandbox')
         options.add_argument("--log-level=3")
